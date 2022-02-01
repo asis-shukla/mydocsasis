@@ -1,0 +1,26 @@
+{
+  "name": "mydocsasis",
+  "version": "1.0.0",
+  "description": "This is sample project to learn API documentation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev:start": "nodemon index.js"
+  },
+  "keywords": [
+    "express",
+    "API",
+    "swagger",
+    "node"
+  ],
+  "author": "Ashish Shukla",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
