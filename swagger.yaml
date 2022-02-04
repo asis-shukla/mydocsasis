@@ -42,8 +42,8 @@ paths:
         200:
           description: All Users
           content:
-              schema:
-                example: myString
+            schema:
+              example: myString
   /products:
     get:
       tags:
@@ -51,8 +51,23 @@ paths:
       summary: Returns the list of product
       responses:
         200:
-          description: All Product
+          description: A JSON array of products
           content:
+            application/json:
               schema:
-                example: myString
-
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  author:
+                    type: string
+                  addedDate:
+                    type: string
+                  price:
+                    type: integer
+        400:
+          description: Bad Request
+        500:
+          description: Internal server Error
