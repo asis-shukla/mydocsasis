@@ -6,6 +6,7 @@ const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const swaggerDocument = YAML.load("./swagger.yaml");
 
+app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/", (req, res) => {
@@ -59,6 +60,12 @@ app.get("/api/v1/courses/:id", (req, res) => {
     (courseItem) => courseItem.id === req.params.id
   );
   return res.status(200).json(course ? course : null);
+});
+
+app.post("/api/v1/addcourse", (req, res) => {
+  console.log("req.body", req.body);
+  coursesData.push(req.body);
+  res.send(true);
 });
 
 app.listen(port, () => {
