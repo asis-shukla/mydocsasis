@@ -167,3 +167,43 @@ paths:
           description: Bad Request
         500:
           description: Internal server Error
+  /coursequery:
+    get:
+      tags:
+        - "Learnings"
+      summary: Get query parameters in reqponse
+      parameters:
+        - name: location
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "delhi"
+              - "mumbai"
+              - "UP"
+        - name: device
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "hp"
+              - "nokia"
+              - "samsung"
+      responses:
+        200:
+          description: added query paramter values as object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                  device:
+                    type: string
+        400:
+          description: Bad Request
+        500:
+          description: Internal server Error

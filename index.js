@@ -68,6 +68,12 @@ app.post("/api/v1/addcourse", (req, res) => {
   res.send(true);
 });
 
+app.get("/api/v1/coursequery", (req, res) => {
+  const location = req.query.location;
+  const device = req.query.device;
+  res.json({ location, device });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
