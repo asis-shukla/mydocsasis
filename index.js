@@ -28,21 +28,21 @@ app.get("/api/v1/products", (req, res) => {
 
 const coursesData = [
   {
-    id: "34js",
+    id: "1",
     name: "JS Course",
     description: "A Complete JavaScript course",
     price: 456,
     effortHour: 100,
   },
   {
-    id: "56py",
+    id: "2",
     name: "Python Course",
     description: "A Complete Python course",
     price: 200,
     effortHour: 60,
   },
   {
-    id: "90C",
+    id: "3",
     name: "C Course",
     description: "A Complete C course",
     price: 1000,
@@ -52,6 +52,13 @@ const coursesData = [
 
 app.get("/api/v1/courses", (req, res) => {
   return res.status(200).json(coursesData);
+});
+
+app.get("/api/v1/courses/:id", (req, res) => {
+  const course = coursesData.find(
+    (courseItem) => courseItem.id === req.params.id
+  );
+  return res.status(200).json(course ? course : null);
 });
 
 app.listen(port, () => {
