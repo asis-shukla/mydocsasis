@@ -1,4 +1,6 @@
 const express = require("express");
+const fileUpload = require("express-fileupload");
+
 const app = express();
 const port = 3000;
 
@@ -7,6 +9,7 @@ const YAML = require("yamljs");
 const swaggerDocument = YAML.load("./swagger.yaml");
 
 app.use(express.json());
+app.use(fileUpload());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/", (req, res) => {
@@ -72,6 +75,18 @@ app.get("/api/v1/coursequery", (req, res) => {
   const location = req.query.location;
   const device = req.query.device;
   res.json({ location, device });
+});
+
+app.post("/api/v1/courseupload", (req, res) => {
+  const file = req.files.file;
+  let path = __dirname + "/images/" + Date.now() + ".jpg";
+  file.mv(path, (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(true);
+    }
+  });
 });
 
 app.listen(port, () => {
